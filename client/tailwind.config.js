@@ -6,7 +6,6 @@ const config = {
 	content: ["./src/**/*.{html,js,svelte,ts}"],
 	safelist: ["dark"],
 	theme: {
-
 		extend: {
 			colors: {
 				border: "hsl(var(--border) / <alpha-value>)",
@@ -43,6 +42,7 @@ const config = {
 					foreground: "hsl(var(--card-foreground) / <alpha-value>)"
 				},
 
+
 				// Homepage colors *************
 
 				//nav bar colors
@@ -76,8 +76,6 @@ const config = {
 
 				internheading: "#D2D2D2",
 				interncard: "#2B2B2B",
-
-
 			},
 
 
@@ -96,6 +94,3 @@ const config = {
 };
 
 export default config;
-
-
-// style="background: linear-gradient(85.8deg, #FF3434 9.11%, rgba(255, 63, 52, 0.848958) 33.86%, rgba(255, 91, 51, 0.616348) 80.97%, rgba(255, 117, 52, 0.41) 127.28%, rgba(255, 125, 52, 0) 162.41%);"

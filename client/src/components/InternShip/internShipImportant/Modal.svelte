@@ -8,9 +8,9 @@
 	$: {
 		if (dialog && showModal) {
 			dialog.showModal();
-			document.body.style.overflow = 'hidden';
+			window.document.body.style.overflow = 'hidden';
 		} else {
-			document.body.style.overflow = '';
+			window.document.body.style.overflow = '';
 		}
 	}
 </script>
@@ -28,7 +28,7 @@
 		<!-- svelte-ignore a11y-autofocus -->
 		<div class="flex justify-end bg-transparent">
 			<Button
-				class="hover:bg-transparent"
+				class="opacity-95 hover:bg-transparent"
 				variant="ghost"
 				size="icon"
 				autofocus

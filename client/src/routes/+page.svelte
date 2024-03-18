@@ -11,9 +11,9 @@
 	<div class="bg-black">
 		<Hero />
 	</div>
-	<Brain />
+	<!-- <Brain />
 	<CodingBalls />
 	<Services />
 	<Contact />
-	<Footer />
+	<Footer /> -->
 </div>

@@ -109,7 +109,9 @@
 			class="font-publicbold rounded-full px-12 py-8 text-[20px] text-[#000000]">APPLY NOW</Button
 		>
 		<Modal bind:showModal>
-			<h2 slot="header" class="font-publicaz text-center text-4xl">Complete Your Application</h2>
+			<h2 slot="header" class="font-publicaz text-herodesc text-center text-4xl">
+				Complete Your Application
+			</h2>
 
 			<ol class="definition-list mt-4 flex justify-evenly">
 				<li>online</li>
@@ -117,22 +119,31 @@
 			</ol>
 
 			<form class=" ">
-				<div class="grid grid-cols-2 items-center justify-center gap-x-5 gap-y-2 px-10 pt-5">
+				<div class="grid grid-cols-2 items-center justify-center gap-x-5 px-10 pt-5">
 					<div class="input-group">
-						<input type="text" />
-						<label for="">Name</label>
+						<input class="font-publicaz" type="text" />
+						<label for="" class="font-inter">Name</label>
 					</div>
 					<div class="input-group">
-						<input type="text" />
-						<label for="">Name</label>
+						<input class="font-publicaz" type="text" />
+						<label for="" class="font-inter">College Name</label>
 					</div>
-					<!-- <input type="text" />
-					<input type="text" />
-					<input type="text" />
-					<input type="text" />
-					<input type="text" />
-					<input type="text" />
-					<input type="text" /> -->
+					<div class="input-group">
+						<input class="font-publicaz" type="text" />
+						<label for="" class="font-inter">E-Mail</label>
+					</div>
+					<div class="input-group">
+						<input class="font-publicaz" type="text" />
+						<label for="" class="font-inter">Field of Study</label>
+					</div>
+					<div class="input-group">
+						<input class="font-publicaz" type="text" />
+						<label for="" class="font-inter">Phone Number</label>
+					</div>
+					<div class="input-group">
+						<input class="font-publicaz" type="text" />
+						<label for="" class="font-inter">Name</label>
+					</div>
 				</div>
 
 				<div class="flex justify-center px-10 pt-4">
@@ -180,6 +191,6 @@
 	.input-group input:valid ~ label {
 		top: 0;
 		font-size: 12px;
-		background-color: #242424;
+		background-color: #111111;
 	}
 </style>
