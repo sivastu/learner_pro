@@ -7,7 +7,7 @@
 </script>
 
 <header class=" bg-navbg sticky top-0 z-20 py-3 transition-all duration-500">
-	<div class=" flex items-center justify-between px-5 md:px-20 lg:px-52">
+	<div class=" flex items-center justify-between px-3 lg:px-52">
 		<a href="/" class="font-gilroy text-navlogo text-xl md:text-3xl">Learner Pro</a>
 		<ul
 			class="font-publicalight flex cursor-pointer items-center justify-between gap-x-4 text-lg font-semibold lg:gap-x-9 xl:gap-x-24"
@@ -22,6 +22,44 @@
 		</ul>
 	</div>
 </header>
+
+<!-- <header class="bg-navbg sticky top-0 z-20 py-3 transition-all duration-500">
+	<div class="flex items-center justify-between px-3 lg:px-52">
+		<a href="/" class="font-gilroy text-navlogo text-xl md:text-3xl">Learner Pro</a>
+		<button class="focus:outline-none lg:hidden">
+			<svg
+				class="h-6 w-6 text-white"
+				fill="none"
+				stroke="currentColor"
+				viewBox="0 0 24 24"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M4 6h16M4 12h16m-7 6h7"
+				></path>
+			</svg>
+		</button>
+		<ul class="hidden flex-col text-lg font-semibold lg:flex lg:flex-row lg:gap-x-9 xl:gap-x-24">
+			{#each menuLinks as link}
+				<li class={`text-navmenu pb-1 tracking-[1px] transition-all duration-100 hover:border-b-2`}>
+					<a href={link.path}>{link.name}</a>
+				</li>
+			{/each}
+		</ul>
+	</div>
+	<div class="bg-navbg absolute left-0 right-0 top-16 z-10 shadow-md lg:hidden">
+		<ul class="flex flex-col items-center gap-y-4">
+			{#each menuLinks as link}
+				<li class="text-navmenu pb-1 tracking-[1px] transition-all duration-100 hover:border-b-2">
+					<a href={link.path}>{link.name}</a>
+				</li>
+			{/each}
+		</ul>
+	</div>
+</header> -->
 
 <style>
 </style>

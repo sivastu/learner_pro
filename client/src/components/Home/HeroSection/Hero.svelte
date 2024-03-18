@@ -4,22 +4,24 @@
 	import hero from '../../../img/Home/hero.png';
 </script>
 
-<div class="hero min-h-screen overflow-y-hidden">
+<div class="hero min-h-screen overflow-x-hidden">
 	<div class="pt-10">
 		<div class="flex flex-col items-center justify-between lg:flex-row">
-			<div class=" px-20 lg:w-1/2 xl:px-36">
-				<h1
-					class="font-publicaz text-herotext text-nowrap text-[50px] leading-tight tracking-wider xl:text-[65px]"
-				>
-					<span class="text-[55px] xl:text-[75px]">Keep Learning</span> <br /> On LearnerPro
-				</h1>
-				<p
-					class="font-publicaz text-herodesc mt-3 text-nowrap text-[17px] font-medium leading-loose xl:text-[20px]"
-				>
-					Empower your journey through personalized learning.
-					<br />
-					Elevate your skills with our innovative app today
-				</p>
+			<div class=" px-10 md:px-20 lg:w-1/2 xl:px-36">
+				<div class="text-center md:text-left">
+					<h1
+						class="font-publicaz text-herotext text-nowrap text-[30px] leading-tight tracking-wider md:text-[50px] xl:text-[65px]"
+					>
+						<span class="text-[35px] md:text-[55px] xl:text-[75px]">Keep Learning</span> <br /> On LearnerPro
+					</h1>
+					<p
+						class="font-publicaz text-herodesc mt-3 text-nowrap text-[17px] font-medium leading-loose xl:text-[20px]"
+					>
+						Empower your journey through personalized learning.
+						<br />
+						Elevate your skills with our innovative app today
+					</p>
+				</div>
 				<div class="font-publicamedium mt-5 flex gap-8 font-semibold md:mt-12">
 					<Button
 						style="background: linear-gradient(85.8deg, #FF3434 9.11%, rgba(255, 63, 52, 0.848958) 33.86%, rgba(255, 91, 51, 0.616348) 80.97%, rgba(255, 117, 52, 0.41) 127.28%, rgba(255, 125, 52, 0) 162.41%);"
@@ -90,4 +92,7 @@
 		background-size: cover;
 		background-position: center;
 	}
+	/* @media screen and (max-width: 768px) {
+		
+	} */
 </style>
