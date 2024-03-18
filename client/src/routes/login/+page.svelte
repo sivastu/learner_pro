@@ -1,22 +1,22 @@
 <script>
-	import imageUrl from '../../img/login.png';
+	import imageUrl from '../../img/Home/login.png';
 	export let gradientColor1 = '#424242';
 	export let gradientColor2 = '#0E0E0E';
- 
+
 	import { onMount } from 'svelte';
- 
-function otpless(otplessUser) {
-  alert(JSON.stringify(otplessUser)); 
-}
- 
-let otplessUser = {
-  username: 'example_user',
-  email: 'example@example.com' 
-};
- 
-onMount(() => {
-  otpless(otplessUser);
-});
+
+	function otpless(otplessUser) {
+		alert(JSON.stringify(otplessUser));
+	}
+
+	let otplessUser = {
+		username: 'example_user',
+		email: 'example@example.com'
+	};
+
+	onMount(() => {
+		otpless(otplessUser);
+	});
 </script>
 
 <div style="overflow-x: hidden;">
