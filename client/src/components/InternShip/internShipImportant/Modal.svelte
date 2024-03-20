@@ -7,15 +7,19 @@
   let dialog: HTMLDialogElement; // HTMLDialogElement
 
   onMount(() => {
-    let scrolloff = (document.body.style.overflow = "hidden");
+    let scrolloff;
+    if (typeof document !== "undefined") {
+      scrolloff = document.body.style.overflow = "hidden";
+    }
   });
 
   $: {
-    if (dialog && showModal) {
+    if (dialog && showModal && typeof document !== "undefined") {
       dialog.showModal();
-      // window.document.body.style.overflow = 'hidden';
-    } else {
-      // window.document.body.style.overflow = '';
+
+      document.body.style.overflow = "hidden";
+    } else if (typeof document !== "undefined") {
+      document.body.style.overflow = "";
     }
   }
 </script>
@@ -23,7 +27,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 
 <dialog
-  class=" rounded-2xl bg-[#242424] p-2 opacity-90 shadow-2xl"
+  class=" rounded-2xl px-10 container mx-auto w-[1000px] bg-[#242424] p-2 opacity-90 shadow-2xl"
   bind:this={dialog}
   on:close={() => (showModal = false)}
   on:click|self={() => dialog.close()}
@@ -57,7 +61,7 @@
     border: none;
   }
   dialog::backdrop {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.6);
   }
   dialog > div {
     padding: 1em;

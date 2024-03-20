@@ -119,7 +119,4 @@
     background-size: cover;
     background-position: center;
   }
-  /* @media screen and (max-width: 768px) {
-		
-	} */
 </style>

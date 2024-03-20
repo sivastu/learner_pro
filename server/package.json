@@ -7,9 +7,11 @@
     "start": "NODE_ENV=production bun src/index.ts"
   },
   "dependencies": {
+    "@elysiajs/cors": "^1.0.2",
     "@elysiajs/jwt": "^0.8.0",
     "@elysiajs/swagger": "^0.8.5",
     "@grotto/logysia": "^0.1.1",
+    "cors": "^2.8.5",
     "elysia": "latest",
     "mongoose": "^8.2.1"
   },

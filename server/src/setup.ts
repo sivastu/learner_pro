@@ -1,9 +1,9 @@
 import { Elysia } from "elysia";
-import { AuthRouter, UserRouter } from "./controllers";
 import { logger } from "@grotto/logysia";
 import { connect } from "mongoose";
 import { swagger } from "@elysiajs/swagger";
-
+import { AuthController,WebinarController} from "./controllers";
+import {cors} from "@elysiajs/cors"
 const app = new Elysia();
 
 await connect(
@@ -11,6 +11,14 @@ await connect(
 )
   .then(() => console.log("connected to db"))
   .catch((err) => console.log(err));
+
+  app.use(cors(
+    {
+      origin: "*",
+      credentials: true,
+    }
+  ))
+
 
 app.use(
   logger({
@@ -22,23 +30,19 @@ app.use(
 app.use(
   swagger({
     path: "/docs",
-    swaggerOptions: {},
     documentation: {
       info: {
-        title: "Pressup API",
+        title: "Learner API",
         version: "1.0.0",
       },
-      tags: [
-        { name: "User", description: "User endpoints" },
-        { name: "Auth", description: "Authentication endpoints" },
-      ],
+      
     },
   })
 );
 
 // adding routes
-app.use(UserRouter);
-app.use(AuthRouter);
+app.use(AuthController)
+app.use(WebinarController)
 
 app.onError(({ code, error }) => {
   if (code === "VALIDATION") {

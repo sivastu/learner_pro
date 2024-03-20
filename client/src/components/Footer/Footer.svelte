@@ -4,7 +4,7 @@
 </script>
 
 <main
-  class=" flex w-full justify-center overflow-x-hidden bg-[#161616] pb-14 text-white"
+  class=" flex w-full justify-center overflow-x-hidden bg-[#161616] py-4 md:py-14 text-white"
 >
   <div class="mt-5">
     <div
