@@ -16,7 +16,6 @@
   $: {
     if (dialog && showModal && typeof document !== "undefined") {
       dialog.showModal();
-
       document.body.style.overflow = "hidden";
     } else if (typeof document !== "undefined") {
       document.body.style.overflow = "";

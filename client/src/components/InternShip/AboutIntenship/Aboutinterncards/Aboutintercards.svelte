@@ -57,7 +57,8 @@
                 class="font-publicamedium w-full bg-transparent indent-4 text-base md:text-lg text-[#8B8989] outline-none"
                 type="text"
               />
-              <Button class="rounded-lg bg-black uppercase hover:bg-black"
+              <Button
+                class="rounded-lg bg-black text-white uppercase hover:bg-black"
                 >Submit</Button
               >
             </div>
