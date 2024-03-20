@@ -7,7 +7,7 @@
   const currentPath = $page.url.pathname;
 </script>
 
-<!-- <header class=" bg-navbg sticky top-0 z-20 py-3 transition-all duration-500">
+<header class=" bg-navbg sticky top-0 z-20 py-3 transition-all duration-500">
   <div class=" flex items-center justify-between px-3 lg:px-52">
     <a href="/" class="font-gilroy text-navlogo text-xl md:text-3xl"
       >Learner Pro</a
@@ -22,7 +22,7 @@
           <a href={link.path}> {link.name}</a>
         </li>
       {/each}
-      <li>
+      <!-- <li>
         <div
           style="border: 1.15px solid rgba(232, 239, 247, 0.25)"
           class="flex p-2 items-center rounded-xl ga-2 bg-[#010101]"
@@ -32,10 +32,10 @@
             Ansel Joseva
           </p>
         </div>
-      </li>
+      </li> -->
     </ul>
   </div>
-</header> -->
+</header>
 
 <!-- <header class="bg-navbg sticky top-0 z-20 py-3 transition-all duration-500">
 	<div class="flex items-center justify-between px-3 lg:px-52">

@@ -14,7 +14,7 @@
   import axios from "axios";
   import { toast } from "svelte-sonner";
 
-  let showModal = true;
+  let showModal = false;
 
   const { errors, touched, isValid, isSubmitting, handleChange, handleSubmit } =
     createForm({

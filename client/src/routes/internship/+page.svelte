@@ -21,9 +21,9 @@
     <Aboutintercards />
   </div>
   <!-- Internship Testimonials -->
-  <div class="">
+  <!-- <div class="">
     <TestimonialsHero />
-  </div>
+  </div> -->
   <Elitestudents />
   <Frequentquestion />
   <Footer />

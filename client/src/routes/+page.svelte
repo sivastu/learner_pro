@@ -13,7 +13,7 @@
   </div>
   <Brain />
   <CodingBalls />
-  <Services />
+  <!-- <Services /> -->
   <Contact />
   <Footer />
 </div>
