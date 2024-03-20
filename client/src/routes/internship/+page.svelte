@@ -12,23 +12,25 @@
 <div>
   <!-- Internship Home -->
   <div class="bg-internherobg">
-    <!-- <InternShipHero /> -->
+    <InternShipHero />
   </div>
-  <!-- <Internshipcards /> -->
+  <Internshipcards />
   <!-- Internship About -->
   <div class="bg-internherobg">
-    <!-- <Aboutinternhero /> -->
-    <!-- <Aboutintercards /> -->
+    <Aboutinternhero />
+    <Aboutintercards />
   </div>
   <!-- Internship Testimonials -->
-
   <div class="">
     <TestimonialsHero />
   </div>
-  <!-- <Elitestudents /> -->
-  <!-- <Frequentquestion /> -->
-  <!-- <Footer /> -->
+  <Elitestudents />
+  <Frequentquestion />
+  <Footer />
 </div>
 
 <style>
+  .hero {
+    /* background-image: url(../../img/Internship/testimonialhero.png); */
+  }
 </style>

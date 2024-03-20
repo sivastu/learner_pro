@@ -5,4 +5,9 @@ export const LoginDto = t.Object({
     minLength: 10,
     error: "Invalid phone number",
   }),
+  email: t.String({
+    regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    error: "Invalid email",
+  })
+
 });

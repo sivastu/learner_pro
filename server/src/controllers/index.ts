@@ -1,4 +1,4 @@
-import { UserRouter } from "./user.routes";
-import { AuthRouter } from "./auth.routes";
+import { AuthController } from "./auth.controller";
+import {WebinarController} from './webinar.controller'
 
-export { UserRouter, AuthRouter };
+export {AuthController,WebinarController}

@@ -1,15 +1,45 @@
 <script>
+  import * as RadioGroup from "./../../../lib/components/ui/radio-group";
   import Button from "$lib/components/ui/button/button.svelte";
   import { Card } from "$lib/components/ui/card";
   import card1 from "../../../img/Internship/card1.svg";
   import card2 from "../../../img/Internship/card2.svg";
   import card3 from "../../../img/Internship/card3.svg";
   import card4 from "../../../img/Internship/card4.svg";
-  import * as AlertDialog from "$lib/components/ui/alert-dialog";
-  import close from "../../../img/Internship/close.svg";
   import Modal from "./Modal.svelte";
+  import { Label } from "$lib/components/ui/label";
+  import { createForm } from "svelte-forms-lib";
+  import config from "$lib/config";
+  import * as yup from "yup";
+  import axios from "axios";
+  import { toast } from "svelte-sonner";
 
   let showModal = true;
+
+  const { errors, touched, isValid, isSubmitting, handleChange, handleSubmit } =
+    createForm({
+      initialValues: {
+        name: "",
+        collegeName: "",
+        email: "",
+        fieldofStudy: "",
+        phoneNumber: "",
+      },
+      validationSchema: yup.object().shape({
+        name: yup.string().required("Name is required"),
+        collegeName: yup.string().required("College Name is required"),
+        email: yup.string().required("Email is required"),
+        fieldofStudy: yup.string().required("Field of Study is required"),
+        phoneNumber: yup
+          .string()
+          .required("Phone Number is required")
+          .min(10, "phone number should be 10")
+          .max(10, "phone number should be 10"),
+      }),
+      onSubmit: async (values) => {
+        console.log(values);
+      },
+    });
 </script>
 
 <main class="bg-internherobg min-h-screen w-full overflow-x-hidden text-white">
@@ -101,115 +131,158 @@
     <h1>Kickstart Your Career With Our Internship Program!</h1>
   </div>
   <div class="py-4 md:py-16 mt-3 flex justify-center">
-    <!-- <AlertDialog.Root>
-			<AlertDialog.Trigger asChild let:builder>
-				<Button
-					builders={[builder]}
-					style="background: linear-gradient(82.96deg, #FFFFFF -29.79%, #FF3434 -29.77%, #00B4DB -9.84%, #E9E9E9 108.39%, #212443 161.74%);"
-					class="font-publicbold rounded-full px-12 py-8 text-[20px] text-[#000000]"
-					>APPLY NOW</Button
-				>
-			</AlertDialog.Trigger>
-			<AlertDialog.Content class="w-[40%] border-0 bg-[#242424] p-2  ">
-				<div class="flex justify-end px-10">
-					<AlertDialog.Cancel class=" border-0 bg-[#242424]  hover:bg-transparent">
-						<img src={close} class="h-[15px]" alt="" />
-					</AlertDialog.Cancel>
-				</div>
-				<div class="font-publicaz text-herodesc flex justify-center text-4xl">
-					<h1>Complete Your Application</h1>
-				</div>
-				<div class="">
-					<form action=""></form>
-				</div>
-			</AlertDialog.Content>
-		</AlertDialog.Root> -->
     <Button
       on:click={() => (showModal = true)}
       style="background: linear-gradient(82.96deg, #FFFFFF -29.79%, #FF3434 -29.77%, #00B4DB -9.84%, #E9E9E9 108.39%, #212443 161.74%);"
       class="font-publicbold rounded-full px-6 md:px-12 py-6 md:py-8 text-[20px] text-[#000000]"
       >APPLY NOW</Button
     >
-    <Modal bind:showModal>
-      <h2
-        slot="header"
-        class="font-publicaz text-herodesc text-center text-4xl"
-      >
-        Complete Your Application
-      </h2>
-
-      <ol class="definition-list mt-4 flex justify-evenly">
-        <li>online</li>
-        <li>offline</li>
-      </ol>
-
-      <form class=" ">
-        <div
-          class="grid grid-cols-2 items-center justify-center gap-x-5 px-10 pt-5"
-        >
-          <div class="input-group">
-            <input class="font-publicaz" type="text" />
-            <label for="" class="font-inter">Name</label>
-          </div>
-          <div class="input-group">
-            <input class="font-publicaz" type="text" />
-            <label for="" class="font-inter">College Name</label>
-          </div>
-          <div class="input-group">
-            <input class="font-publicaz" type="text" />
-            <label for="" class="font-inter">E-Mail</label>
-          </div>
-          <div class="input-group">
-            <input class="font-publicaz" type="text" />
-            <label for="" class="font-inter">Field of Study</label>
-          </div>
-          <div class="input-group">
-            <input class="font-publicaz" type="text" />
-            <label for="" class="font-inter">Phone Number</label>
-          </div>
-          <div class="input-group">
-            <input class="font-publicaz" type="text" />
-            <label for="" class="font-inter">Name</label>
-          </div>
-        </div>
-
-        <div class="flex justify-center px-10 pt-4">
-          <Button
-            style="background: linear-gradient(82.96deg, #212443 -29.79%, #FF3434 -29.77%, #006CDB -9.84%, #E51057 108.39%, #212443 161.74%);
-					"
-            class="text-herodesc font-publicbold w-full rounded-full py-6 text-[20px] "
-            >Submit</Button
-          >
-        </div>
-      </form>
-    </Modal>
   </div>
 </main>
+<Modal bind:showModal>
+  <h2 slot="header" class="font-publicaz text-herodesc text-center text-4xl">
+    Complete Your Application
+  </h2>
+
+  <form class:valid={$isValid} method="POST" on:submit={handleSubmit}>
+    <ol class="definition-list mt-10 flex justify-evenly">
+      <li class="flex items-center gap-4">
+        <input class="" type="checkbox" name="" id="" />
+        <p class="font-publicbold text-3xl">Online</p>
+      </li>
+      <li class="flex items-center gap-4">
+        <input type="checkbox" name="" id="" />
+        <p class="font-publicbold text-3xl">offline</p>
+      </li>
+    </ol>
+    <div class=" grid grid-cols-2 gap-x-8 pt-5">
+      <div class="input-group">
+        <input
+          name="name"
+          on:keyup={handleChange}
+          class="font-publicaz w-full py-3 indent-4 md:text-lg"
+          type="text"
+        />
+        <label for="" class="text-base font-inter">Name</label>
+        {#if $errors.name && $touched.name}
+          <small class="text-red-500 font-gilroy">{$errors.name}</small>
+        {/if}
+      </div>
+      <div class="input-group">
+        <input
+          name="collegeName"
+          on:keyup={handleChange}
+          class="font-publicaz w-full py-3 indent-4 md:text-lg"
+          type="text"
+        />
+        <label for="" class="text-base font-inter">College Name</label>
+        {#if $errors.collegeName && $touched.collegeName}
+          <small class="text-red-500 font-gilroy">{$errors.collegeName}</small>
+        {/if}
+      </div>
+      <div class="input-group">
+        <input
+          name="email"
+          on:keyup={handleChange}
+          class="font-publicaz w-full py-3 indent-4 md:text-lg"
+          type="text"
+        />
+        <label for="" class="text-base font-inter">E-Mail</label>
+        {#if $errors.email && $touched.email}
+          <small class="text-red-500 font-gilroy">{$errors.email}</small>
+        {/if}
+      </div>
+      <div class="input-group">
+        <input
+          name="fieldofStudy"
+          on:keyup={handleChange}
+          class="font-publicaz w-full py-3 indent-4 md:text-lg"
+          type="text"
+        />
+        <label for="" class="text-base font-inter">Field of Study</label>
+        {#if $errors.fieldofStudy && $touched.fieldofStudy}
+          <small class="text-red-500 font-gilroy">{$errors.fieldofStudy}</small>
+        {/if}
+      </div>
+      <div class="input-group">
+        <input
+          name="phoneNumber"
+          on:keyup={handleChange}
+          class="font-publicaz w-full py-3 indent-4 md:text-lg"
+          type="text"
+        />
+        <label for="" class="text-base font-inter">Phone Number</label>
+        {#if $errors.phoneNumber && $touched.phoneNumber}
+          <small class="text-red-500 font-gilroy">{$errors.phoneNumber}</small>
+        {/if}
+      </div>
+      <div class="input-group">
+        <select
+          class="font-publicaz w-full border border-white py-4 bg-transparent text-white indent-4 md:text-lg"
+          name="currentPosition"
+        >
+          <option value="">Area of Interest</option>
+        </select>
+      </div>
+      <div class="input-group gender border border-white">
+        <h1
+          class="border inline relative -top-3 left-1 text-base bg-[#111111] font-inter"
+        >
+          gender
+        </h1>
+        <div class="">
+          <RadioGroup.Root value="comfortable">
+            <div class="flex gap-10 px-10 items-center">
+              <div class="flex items-center space-x-2">
+                <RadioGroup.Item value="default" id="r1" />
+                <Label for="r1">Default</Label>
+              </div>
+              <div class="flex items-center space-x-2">
+                <RadioGroup.Item value="comfortable" id="r2" />
+                <Label for="r2">Comfortable</Label>
+              </div>
+            </div>
+            <RadioGroup.Input name="spacing" />
+          </RadioGroup.Root>
+        </div>
+      </div>
+      <div class="input-group">
+        <input class="font-publicaz w-full py-4 indent-4" type="file" />
+        <label for="" class="text-base font-inter"
+          >Upload Identity Card/Resume
+        </label>
+      </div>
+    </div>
+
+    <div class="flex justify-center px-10 pt-4">
+      <Button
+        type="submit"
+        style="background: linear-gradient(82.96deg, #212443 -29.79%, #FF3434 -29.77%, #006CDB -9.84%, #E51057 108.39%, #212443 161.74%);
+      "
+        class="text-herodesc font-publicbold w-full rounded-full py-6 text-[20px] "
+        >Submit</Button
+      >
+    </div>
+  </form>
+</Modal>
 
 <style>
   .input-group {
     position: relative;
-    margin: 20px 0;
+    margin: 25px 0;
   }
   .input-group label {
     position: absolute;
     top: 50%;
     left: 5px;
     transform: translateY(-50%);
-    font-size: 16px;
     color: #fff;
-    padding: 0 5px;
     pointer-events: none;
     transition: 0.5s;
   }
   .input-group input {
-    height: 40px;
-    font-size: 16px;
-    padding: 0 10px;
-    color: #fff;
+    color: seashell;
     background-color: transparent;
-    /* border: 3px solid;
-		border-image-source: linear-gradient(180deg, #444444 0%, #959595 100%); */
     border: 1.2px solid #fff;
     outline: none;
     border-radius: 5px;
@@ -217,7 +290,13 @@
   .input-group input:focus ~ label,
   .input-group input:valid ~ label {
     top: 0;
-    font-size: 12px;
     background-color: #111111;
+  }
+  select,
+  .gender {
+    background-color: transparent;
+    border: 1.2px solid #fff;
+    outline: none;
+    border-radius: 5px;
   }
 </style>

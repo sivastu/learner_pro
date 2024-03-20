@@ -8,12 +8,12 @@
 </script>
 
 <div class="">
-  <!-- <div class="bg-black">
-		<Hero />
-	</div> -->
-  <!-- <Brain /> -->
-  <!-- <CodingBalls /> -->
-  <!-- <Services /> -->
+  <div class="bg-black">
+    <Hero />
+  </div>
+  <Brain />
+  <CodingBalls />
+  <Services />
   <Contact />
-  <!-- <Footer /> -->
+  <Footer />
 </div>
