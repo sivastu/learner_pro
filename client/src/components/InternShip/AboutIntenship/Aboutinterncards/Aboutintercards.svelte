@@ -36,7 +36,7 @@
     {/each}
   </div>
 
-  <div class="mt-5 md:mt-10 px-5 md:px-10 lg:px-20">
+  <!-- <div class="mt-5 md:mt-10 px-5 md:px-10 lg:px-20">
     <div class="herowave py-2 md:py-5 rounded-2xl">
       <div
         class="herowave flex py-5 flex-wrap items-center justify-evenly rounded-s-3xl"
@@ -66,7 +66,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </main>
 
 <style>

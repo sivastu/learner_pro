@@ -48,19 +48,19 @@
                   What language will be used for aspects of the internship?
                 </div>
               </div>
-              {#if isOpen}
+              <!-- {#if isOpen}
                 <div
                   class="cursor-pointer rounded-full bg-[#D9D9D91A] text-lg md:text-3xl text-[#C0C0C0]"
                 >
                   <Icon icon="mingcute:close-fill" />
                 </div>
-              {:else}
-                <div
-                  class="cursor-pointer rounded-full bg-[#D9D9D91A] text-lg md:text-3xl text-[#C0C0C0]"
-                >
-                  <Icon icon="pepicons-pop:plus" />
-                </div>
-              {/if}
+              {:else} -->
+              <div
+                class="cursor-pointer rounded-full bg-[#D9D9D91A] text-lg md:text-3xl text-[#C0C0C0]"
+              >
+                <Icon icon="pepicons-pop:plus" />
+              </div>
+              <!-- {/if} -->
             </Accordion.Trigger>
             <Accordion.Content class="no-underline"
               ><div
@@ -88,7 +88,7 @@
                 <div
                   class="text-gradient font-inter text-xl md:text-3xl lg:text-5xl font-semibold"
                 >
-                  01
+                  02
                 </div>
                 <div
                   class="font-publicamedium text-base md:text-[20px] xl:text-[30px]"
@@ -96,19 +96,19 @@
                   What language will be used for aspects of the internship?
                 </div>
               </div>
-              {#if isOpen}
+              <!-- {#if isOpen}
                 <div
                   class="cursor-pointer rounded-full bg-[#D9D9D91A] text-lg md:text-3xl text-[#C0C0C0]"
                 >
                   <Icon icon="mingcute:close-fill" />
                 </div>
-              {:else}
-                <div
-                  class="cursor-pointer rounded-full bg-[#D9D9D91A] text-lg md:text-3xl text-[#C0C0C0]"
-                >
-                  <Icon icon="pepicons-pop:plus" />
-                </div>
-              {/if}
+              {:else} -->
+              <div
+                class="cursor-pointer rounded-full bg-[#D9D9D91A] text-lg md:text-3xl text-[#C0C0C0]"
+              >
+                <Icon icon="pepicons-pop:plus" />
+              </div>
+              <!-- {/if} -->
             </Accordion.Trigger>
             <Accordion.Content class="no-underline"
               ><div
@@ -149,7 +149,7 @@
             >
               <input
                 placeholder="Type Query Here..."
-                class="font-publicamedium w-full bg-transparent text-xs indent-4 outline-none"
+                class="font-publicamedium w-full bg-transparent text-base md:text-lg indent-4 outline-none"
                 type="text"
               />
               <Button

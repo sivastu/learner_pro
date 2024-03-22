@@ -27,14 +27,19 @@ const InternShipSchema = new Schema({
      required : true,
      enum:["male","female"]
  },
-//  areaofInterest:{
-//     type : String,
-//     required : true
-//  },
+ areaofInterest:{
+    type : String,
+    required : true,
+    enum:["python","webdevlopement","ui/uxdesigning"]
+ },
+ classMode : {
+    type : String,
+    required : true,
+    enum:["online","offline"]
+ },
 //  image:{
-//     type : String,
-//     required : true
-
+//    type : String,
+//    required : true
 //  }
 })
 

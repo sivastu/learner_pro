@@ -1,4 +1,4 @@
 import { AuthController } from "./auth.controller";
 import {WebinarController} from './webinar.controller'
-
-export {AuthController,WebinarController}
+import { InternshipController } from "./internship.controller";
+export {AuthController,WebinarController,InternshipController}

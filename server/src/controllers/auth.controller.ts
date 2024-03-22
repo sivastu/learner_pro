@@ -9,11 +9,10 @@ export const AuthController = new Elysia({ prefix: "/auth" }).post(
 
     try {
       let userExists = await UserModel.findOne({ phoneNumber });
-
+     
       if (!userExists) {
         userExists = new UserModel({
           phoneNumber: phoneNumber,
-          username: "test",
         });
 
         await userExists.save();
@@ -23,6 +22,8 @@ export const AuthController = new Elysia({ prefix: "/auth" }).post(
 
       return {
         message: "Logged in successfully",
+        data: userExists,
+        ok: true,
       };
     } catch (error : any) {
       set.status = 400;

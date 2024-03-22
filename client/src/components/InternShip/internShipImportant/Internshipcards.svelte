@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import * as RadioGroup from "./../../../lib/components/ui/radio-group";
   import Button from "$lib/components/ui/button/button.svelte";
   import { Card } from "$lib/components/ui/card";
@@ -13,8 +13,15 @@
   import * as yup from "yup";
   import axios from "axios";
   import { toast } from "svelte-sonner";
+  import InternshipCard from "./InternShipCard";
 
   let showModal = false;
+
+  const Interests = [
+    { value: "python", label: "Python" },
+    { value: "webdevlopement", label: "Web Development" },
+    { value: "ui/uxdesigning", label: "UI/UX Design" },
+  ];
 
   const { errors, touched, isValid, isSubmitting, handleChange, handleSubmit } =
     createForm({
@@ -24,6 +31,9 @@
         email: "",
         fieldofStudy: "",
         phoneNumber: "",
+        areaofInterest: "",
+        gender: "",
+        classMode: "",
       },
       validationSchema: yup.object().shape({
         name: yup.string().required("Name is required"),
@@ -35,9 +45,45 @@
           .required("Phone Number is required")
           .min(10, "phone number should be 10")
           .max(10, "phone number should be 10"),
+        areaofInterest: yup
+          .string()
+          .required("Area of Interest is required")
+          .oneOf(["python", "webdevlopement", "ui/uxdesigning"]),
+        gender: yup
+          .string()
+          .required("Gender is required")
+          .oneOf(["male", "female"]),
+        classMode: yup
+          .string()
+          .required("Status is required")
+          .oneOf(["online", "offline"]),
       }),
       onSubmit: async (values) => {
         console.log(values);
+        alert(JSON.stringify(values, null, 2));
+        try {
+          const response = await axios.post(
+            `${config.BaseUrl}internship/register`,
+            values
+          );
+          if (response.data.ok === true) {
+            toast(`${response.data.message}`, {
+              duration: 3000,
+              position: "top-center",
+              style:
+                "border-radius: 20px; background: white; color: black; font-size: 17px; font-family: 'ZPublicaSans', sans-serif;",
+            });
+          }
+          console.log(response);
+        } catch (error: any) {
+          toast(`${error.response.data.message}`, {
+            duration: 3000,
+            position: "top-center",
+            class: "bg-red-500",
+            style:
+              "border-radius: 20px; background: white; color: black; font-size: 17px; font-family: 'ZPublicaSans', sans-serif;",
+          });
+        }
       },
     });
 </script>
@@ -51,78 +97,27 @@
 
   <div class="py-6 md:py-14 flex justify-center container mx-auto">
     <div class="grid grid-cols-1 items-stretch gap-5 md:gap-10 md:grid-cols-2">
-      <Card
-        class=" w-[300px] md:w-[400px] rounded-2xl border-0 bg-gradient-to-br  from-[#000000] to-[#1F5382] px-4 md:px-8 py-2 md:py-4"
-        style=""
-      >
-        <div>
-          <img
-            class="bg-interncard rounded-2xl border-0 p-3"
-            src={card1}
-            alt=""
-          />
-        </div>
-        <div class="font-publicaz mt-4 text-base md:text-[20px] text-[#FFFFFF]">
-          <p>
-            Immerse yourself in real-world challenges and gain valuable hands-on
-            experience through our live project internships.
-          </p>
-        </div>
-      </Card>
-      <Card
-        class="w-[300px] md:w-[400px] rounded-2xl border-0 bg-gradient-to-br  from-[#000000] to-[#1F5382] px-4 md:px-8 py-2 md:py-4"
-        style=""
-      >
-        <div>
-          <img
-            class="bg-interncard rounded-2xl border-0 p-3"
-            src={card2}
-            alt=""
-          />
-        </div>
-        <div class="font-publicaz mt-4 text-base md:text-[20px] text-[#FFFFFF]">
-          <p>
-            Gain practical skills and apply your knowledge to real-world
-            projects during your internship with us.
-          </p>
-        </div>
-      </Card>
-      <Card
-        class="w-[300px] md:w-[400px] rounded-2xl border-0 bg-gradient-to-br  from-[#000000] to-[#1F5382] px-4 md:px-8 md:py-4"
-        style=""
-      >
-        <div>
-          <img
-            class="bg-interncard rounded-2xl border-0 p-3"
-            src={card3}
-            alt=""
-          />
-        </div>
-        <div class="font-publicaz mt-4 text-base md:text-[20px] text-[#FFFFFF]">
-          <p>
-            Experience the thrill of working on live projects and gain
-            invaluable experience in our internship program.
-          </p>
-        </div>
-      </Card>
-      <Card
-        class="w-[300px] md:w-[400px] rounded-2xl border-0 bg-gradient-to-br  from-[#000000] to-[#1F5382] px-4 md:px-8 py-2 md:py-4"
-        style=""
-      >
-        <div>
-          <img
-            class="bg-interncard rounded-2xl border-0 p-3"
-            src={card4}
-            alt=""
-          />
-        </div>
-        <div class="font-publicaz mt-4 text-base md:text-[20px] text-[#FFFFFF]">
-          <p>
-            Demonstrate your value by taking ownership of impactful projects
-            during your internship.
-          </p>
-        </div>
-      </Card>
+      {#each InternshipCard as card}
+        <Card
+          class=" w-[300px] md:w-[400px] rounded-2xl border-0 bg-gradient-to-br  from-[#000000] to-[#1F5382] px-4 md:px-8 py-2 md:py-4"
+          style=""
+        >
+          <div>
+            <img
+              class="bg-interncard rounded-2xl border-0 p-3"
+              src={card.image}
+              alt=""
+            />
+          </div>
+          <div
+            class="font-publicaz mt-4 text-base md:text-[20px] text-[#FFFFFF]"
+          >
+            <p>
+              {card.description}
+            </p>
+          </div>
+        </Card>
+      {/each}
     </div>
   </div>
   <div
@@ -140,22 +135,46 @@
   </div>
 </main>
 <Modal bind:showModal>
-  <h2 slot="header" class="font-publicaz text-herodesc text-center text-4xl">
+  <h2
+    slot="header"
+    class="font-publicaz text-herodesc text-center text-xl md:text-3xl"
+  >
     Complete Your Application
   </h2>
 
   <form class:valid={$isValid} method="POST" on:submit={handleSubmit}>
-    <ol class="definition-list mt-10 flex justify-evenly">
-      <li class="flex items-center gap-4">
-        <input class="" type="checkbox" name="" id="" />
-        <p class="font-publicbold text-3xl">Online</p>
-      </li>
-      <li class="flex items-center gap-4">
-        <input type="checkbox" name="" id="" />
-        <p class="font-publicbold text-3xl">offline</p>
-      </li>
-    </ol>
-    <div class=" grid grid-cols-2 gap-x-8 pt-5">
+    <RadioGroup.Root on:change={handleChange}>
+      <div class="definition-list mt-5 md:mt-10 flex justify-evenly">
+        <div class="flex items-center space-x-2">
+          <input
+            class="cursor-pointer"
+            type="radio"
+            id="online"
+            name="classMode"
+            value="online"
+            on:change={handleChange}
+          />
+          <Label class="font-publicbold text-xl md:text-3xl" for="online"
+            >Online</Label
+          >
+        </div>
+        <div class="flex items-center space-x-2">
+          <input
+            class="cursor-pointer"
+            type="radio"
+            id="offline"
+            name="classMode"
+            value="offline"
+            on:change={handleChange}
+          />
+          <Label class="font-publicbold text-xl md:text-3xl" for="offline"
+            >Offline</Label
+          >
+        </div>
+      </div>
+    </RadioGroup.Root>
+
+    <div class=" grid grid-cols-1 md:grid-cols-2 md:gap-x-8 gap-y-0 md:pt-5">
       <div class="input-group">
         <input
           name="name"
@@ -218,40 +237,63 @@
       </div>
       <div class="input-group">
         <select
-          class="font-publicaz w-full border border-white py-4 bg-transparent text-white indent-4 md:text-lg"
-          name="currentPosition"
+          class="font-publicaz w-full py-3 bg-black text-white indent-4 outline-none bg- md:text-lg"
+          name="areaofInterest"
+          on:change={handleChange}
         >
-          <option value="">Area of Interest</option>
+          <option class="bg-black">Area of Interest</option>
+          {#each Interests as item}
+            <option class="bg-black" value={item.value}>{item.label}</option>
+          {/each}
         </select>
+        {#if $errors.areaofInterest && $touched.areaofInterest}
+          <p class="text-red-500 font-gilroy">{$errors.areaofInterest}</p>
+        {/if}
       </div>
       <div class="input-group gender border border-white">
         <h1
           class="border inline relative -top-3 left-1 text-base bg-[#111111] font-inter"
         >
-          gender
+          Gender
         </h1>
         <div class="">
-          <RadioGroup.Root value="comfortable">
+          <RadioGroup.Root on:change={handleChange}>
             <div class="flex gap-10 px-10 items-center">
               <div class="flex items-center space-x-2">
-                <RadioGroup.Item value="default" id="r1" />
-                <Label for="r1">Default</Label>
+                <input
+                  class="cursor-pointer"
+                  type="radio"
+                  id="male"
+                  name="gender"
+                  value="male"
+                  on:change={handleChange}
+                />
+                <Label class="text-lg font-publicaz" for="male">Male</Label>
               </div>
               <div class="flex items-center space-x-2">
-                <RadioGroup.Item value="comfortable" id="r2" />
-                <Label for="r2">Comfortable</Label>
+                <input
+                  class="cursor-pointer"
+                  type="radio"
+                  id="female"
+                  name="gender"
+                  value="female"
+                  on:change={handleChange}
+                />
+                <Label class="text-lg font-publicaz" for="female">Female</Label>
               </div>
             </div>
-            <RadioGroup.Input name="spacing" />
           </RadioGroup.Root>
+          {#if $errors.areaofInterest && $touched.areaofInterest}
+            <p class="text-red-500 font-gilroy">{$errors.areaofInterest}</p>
+          {/if}
         </div>
       </div>
-      <div class="input-group">
+      <!-- <div class="input-group">
         <input class="font-publicaz w-full py-4 indent-4" type="file" />
         <label for="" class="text-base font-inter"
           >Upload Identity Card/Resume
         </label>
-      </div>
+      </div> -->
     </div>
 
     <div class="flex justify-center px-10 pt-4">
