@@ -1,47 +1,74 @@
-<script>
-	import imageUrl from '../../img/Home/login.png';
-	export let gradientColor1 = '#424242';
-	export let gradientColor2 = '#0E0E0E';
+<head>
+  <script
+    lang="ts"
+    id="otpless-sdk"
+    type="text/javascript"
+    src="https://otpless.com/v2/auth.js"
+    data-appid="TZ76JYNHHTEDGNMT4VIC"
+  >
+  </script>
+  <script>
+    function otpless(otplessUser) {
+      console.log(otplessUser);
+      console.log(otplessUser.token, "edfef");
+      init(otplessUser.token);
+    }
+  </script>
+  <script type="text/javascript">
+    let isInitialized = false;
 
-	import { onMount } from 'svelte';
+    function init(token) {
+      if (isInitialized) {
+        isInitialized = false;
+        return;
+      }
 
-	function otpless(otplessUser) {
-		alert(JSON.stringify(otplessUser));
-	}
+      isInitialized = true;
 
-	let otplessUser = {
-		username: 'example_user',
-		email: 'example@example.com'
-	};
+      fetch("https://auth.otpless.app/auth/userInfo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          token,
+          client_id: "I28KG9G1D52ZBXQMNK57HTJRTG579HRJ",
+          client_secret: "vydxtqrujycus5khgfnoikeonxx4njrs",
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data, "ressssssssssss");
+          const phoneNumber = data.national_phone_number;
+          localStorage.setItem("phoneNumber", phoneNumber);
+          localStorage.setItem("isLoggedIn", true);
+          fetch("http://localhost:4000/auth/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ phoneNumber }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              if (data.ok === true) {
+                window.location.href = "/";
+              }
+            });
+        })
+        .catch((error) => {
+          console.error("Error fetching user info:", error);
+        });
+    }
+  </script>
+</head>
 
-	onMount(() => {
-		otpless(otplessUser);
-	});
-</script>
-
-<div style="overflow-x: hidden;">
-	<div>
-		<div class="row" style="height: 100%">
-			<div class="col-8" style="height: 100%">
-				<div
-					style="background: radial-gradient(circle, {gradientColor1}, {gradientColor2});
-					 width: 100%; height: 100vh; justify-content: center; align-items: center; display: flex;"
-				>
-					<div style="width: 680px; height: 450px">
-						<img style="width: 100%; height: auto;" src={imageUrl} alt="Description of the image" />
-					</div>
-				</div>
-			</div>
-
-			<div class="col-4">
-				<div
-					style="width: 100%; height: 100vh; justify-content: center; align-items: center; display: flex;"
-				>
-					<div id="otpless-login-page"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="h-[94vh] flex items-center justify-center bg-white">
+  <div id="otpless-login-page"></div>
 </div>
-<!-- <h1>Welcome to Login</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> -->

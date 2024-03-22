@@ -1,8 +1,7 @@
 <script>
   import Button from "$lib/components/ui/button/button.svelte";
   import Card from "$lib/components/ui/card/card.svelte";
-  import stars from "../../../../img/Internship/stars.svg";
-  import student1 from "../../../../img/Internship/student1.png";
+  import { GroupofStudents, TwoStudents } from "./InternStudents";
 </script>
 
 <main
@@ -30,22 +29,75 @@
       <div
         class="grid mt-5 xl:mt-0 px-4 xl:px-0 md:grid-cols-2 gap-3 md:gap-10"
       >
+        {#each TwoStudents as students}
+          <Card
+            style="
+                border: 0px solid;
+                border-image-source: linear-gradient(132.43deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 61.87%);
+                background-color: rgba(0, 0, 0, 0.8);
+                "
+            class="rounded-xl border-0 border-opacity-25 shadow-white"
+          >
+            <div class="px-4 py-4">
+              <div
+                class="flex flex-wrap md:flex-nowrap justify-center md:justify-normal
+           items-center gap-3"
+              >
+                <div>
+                  <img
+                    src={students.studentImage}
+                    style="border-radius: 50%; object-fit: contain"
+                    class="h-[140px] w-[140px]"
+                    alt="student1"
+                  />
+                </div>
+                <div class="text-center md:text-left">
+                  <h1 class="font-publicamedium text-xl text-[#FFFFFF]">
+                    {students.studentName}
+                  </h1>
+                  <div
+                    class="font-publicalight mt-2 text-nowrap"
+                    style="color: rgba(255, 255, 255, 0.69);"
+                  >
+                    <h1>{students.department}.</h1>
+                  </div>
+                  <div class="mt-1 flex justify-center md:flex-none">
+                    <img src={students.stars} alt="stars" />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="font-publicalight pt-3 text-center text-[18px] text-[#D8D8D8]"
+              >
+                <p>
+                  {students.review}
+                </p>
+              </div>
+            </div>
+          </Card>
+        {/each}
+      </div>
+    </div>
+    <div
+      class="mt-4 grid grid-cols-1 px-4 xl:px-0 mb-3 md:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-10"
+    >
+      {#each GroupofStudents as students}
         <Card
           style="
-                    border: 0px solid;
-                    border-image-source: linear-gradient(132.43deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 61.87%);
-                    background-color: rgba(0, 0, 0, 0.8);
-                    "
-          class="rounded-xl border-0 border-opacity-25 shadow-2xl"
+                border: 0px solid;
+                border-image-source: linear-gradient(132.43deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 61.87%);
+                background-color: rgba(0, 0, 0, 0.8);
+                "
+          class="rounded-xl border-0 border-opacity-25 shadow-white"
         >
           <div class="px-4 py-4">
             <div
               class="flex flex-wrap md:flex-nowrap justify-center md:justify-normal
-               items-center gap-3"
+           items-center gap-3"
             >
               <div>
                 <img
-                  src={student1}
+                  src={students.studentImage}
                   style="border-radius: 50%; object-fit: contain"
                   class="h-[140px] w-[140px]"
                   alt="student1"
@@ -53,16 +105,16 @@
               </div>
               <div class="text-center md:text-left">
                 <h1 class="font-publicamedium text-xl text-[#FFFFFF]">
-                  Kingshiya K S
+                  {students.studentName}
                 </h1>
                 <div
                   class="font-publicalight mt-2 text-nowrap"
                   style="color: rgba(255, 255, 255, 0.69);"
                 >
-                  <h1>3rd year CSE DEPT, SMCE.</h1>
+                  <h1>{students.department}.</h1>
                 </div>
                 <div class="mt-1 flex justify-center md:flex-none">
-                  <img src={stars} alt="stars" />
+                  <img src={students.stars} alt="stars" />
                 </div>
               </div>
             </div>
@@ -70,240 +122,12 @@
               class="font-publicalight pt-3 text-center text-[18px] text-[#D8D8D8]"
             >
               <p>
-                My experience as a software development intern at XYZ Tech was
-                nothing short of transformative. From day one, I was immersed in
-                real-world projects that challenged and expanded my coding
-                skills.
+                {students.review}
               </p>
             </div>
           </div>
         </Card>
-        <Card
-          style="
-                border: 0px solid;
-                border-image-source: linear-gradient(132.43deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 61.87%);
-                background-color: rgba(0, 0, 0, 0.8);
-                "
-          class="rounded-xl border-0 border-opacity-25 shadow-2xl"
-        >
-          <div class="px-4 py-4">
-            <div class="flex items-center gap-3">
-              <div>
-                <img
-                  src={student1}
-                  style="border-radius: 50%; object-fit: contain"
-                  class="h-[140px] w-[140px]"
-                  alt="student1"
-                />
-              </div>
-              <div>
-                <h1 class="font-publicamedium text-xl text-[#FFFFFF]">
-                  Kingshiya K S
-                </h1>
-                <div
-                  class="font-publicalight mt-2 text-nowrap"
-                  style="color: rgba(255, 255, 255, 0.69);"
-                >
-                  <h1>3rd year CSE DEPT, SMCE.</h1>
-                </div>
-                <div class="mt-1">
-                  <img src={stars} alt="stars" />
-                </div>
-              </div>
-            </div>
-            <div
-              class="font-publicalight pt-3 text-center text-[18px] text-[#D8D8D8]"
-            >
-              <p>
-                My experience as a software development intern at XYZ Tech was
-                nothing short of transformative. From day one, I was immersed in
-                real-world projects that challenged and expanded my coding
-                skills.
-              </p>
-            </div>
-          </div>
-        </Card>
-      </div>
-    </div>
-    <div
-      class="mt-4 grid grid-cols-1 px-4 xl:px-0 mb-3 md:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-10"
-    >
-      <Card
-        style="
-                border: 0px solid;
-                border-image-source: linear-gradient(132.43deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 61.87%);
-                background-color: rgba(0, 0, 0, 0.8);
-                "
-        class="rounded-xl border-0 border-opacity-25 shadow-2xl"
-      >
-        <div class="px-4 py-4">
-          <div class="flex items-center gap-3">
-            <div>
-              <img
-                src={student1}
-                style="border-radius: 50%; object-fit: contain"
-                class="h-[140px] w-[140px]"
-                alt="student1"
-              />
-            </div>
-            <div>
-              <h1 class="font-publicamedium text-xl text-[#FFFFFF]">
-                Kingshiya K S
-              </h1>
-              <div
-                class="font-publicalight mt-2 text-nowrap"
-                style="color: rgba(255, 255, 255, 0.69);"
-              >
-                <h1>3rd year CSE DEPT, SMCE.</h1>
-              </div>
-              <div class="mt-1">
-                <img src={stars} alt="stars" />
-              </div>
-            </div>
-          </div>
-          <div
-            class="font-publicalight pt-3 text-center text-[18px] text-[#D8D8D8]"
-          >
-            <p>
-              My experience as a software development intern at XYZ Tech was
-              nothing short of transformative. From day one, I was immersed in
-              real-world projects that challenged and expanded my coding skills.
-            </p>
-          </div>
-        </div>
-      </Card>
-      <Card
-        style="
-            border: 0px solid;
-            border-image-source: linear-gradient(132.43deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 61.87%);
-            background-color: rgba(0, 0, 0, 0.8);
-            "
-        class="rounded-xl border-0 border-opacity-25 shadow-2xl"
-      >
-        <div class="px-4 py-4">
-          <div class="flex items-center gap-3">
-            <div>
-              <img
-                src={student1}
-                style="border-radius: 50%; object-fit: contain"
-                class="h-[140px] w-[140px]"
-                alt="student1"
-              />
-            </div>
-            <div>
-              <h1 class="font-publicamedium text-xl text-[#FFFFFF]">
-                Kingshiya K S
-              </h1>
-              <div
-                class="font-publicalight mt-2 text-nowrap"
-                style="color: rgba(255, 255, 255, 0.69);"
-              >
-                <h1>3rd year CSE DEPT, SMCE.</h1>
-              </div>
-              <div class="mt-1">
-                <img src={stars} alt="stars" />
-              </div>
-            </div>
-          </div>
-          <div
-            class="font-publicalight pt-3 text-center text-[18px] text-[#D8D8D8]"
-          >
-            <p>
-              My experience as a software development intern at XYZ Tech was
-              nothing short of transformative. From day one, I was immersed in
-              real-world projects that challenged and expanded my coding skills.
-            </p>
-          </div>
-        </div>
-      </Card>
-      <Card
-        style="
-            border: 0px solid;
-            border-image-source: linear-gradient(132.43deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 61.87%);
-            background-color: rgba(0, 0, 0, 0.8);
-            "
-        class="rounded-xl border-0 border-opacity-25 shadow-2xl"
-      >
-        <div class="px-4 py-4">
-          <div class="flex items-center gap-3">
-            <div>
-              <img
-                src={student1}
-                style="border-radius: 50%; object-fit: contain"
-                class="h-[140px] w-[140px]"
-                alt="student1"
-              />
-            </div>
-            <div>
-              <h1 class="font-publicamedium text-xl text-[#FFFFFF]">
-                Kingshiya K S
-              </h1>
-              <div
-                class="font-publicalight mt-2 text-nowrap"
-                style="color: rgba(255, 255, 255, 0.69);"
-              >
-                <h1>3rd year CSE DEPT, SMCE.</h1>
-              </div>
-              <div class="mt-1">
-                <img src={stars} alt="stars" />
-              </div>
-            </div>
-          </div>
-          <div
-            class="font-publicalight pt-3 text-center text-[18px] text-[#D8D8D8]"
-          >
-            <p>
-              My experience as a software development intern at XYZ Tech was
-              nothing short of transformative. From day one, I was immersed in
-              real-world projects that challenged and expanded my coding skills.
-            </p>
-          </div>
-        </div>
-      </Card>
-      <Card
-        style="
-            border: 0px solid;
-            border-image-source: linear-gradient(132.43deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 61.87%);
-            background-color: rgba(0, 0, 0, 0.8);
-            "
-        class="rounded-xl border-0 border-opacity-25 shadow-2xl"
-      >
-        <div class="px-4 py-4">
-          <div class="flex items-center gap-3">
-            <div>
-              <img
-                src={student1}
-                style="border-radius: 50%; object-fit: contain"
-                class="h-[140px] w-[140px]"
-                alt="student1"
-              />
-            </div>
-            <div>
-              <h1 class="font-publicamedium text-xl text-[#FFFFFF]">
-                Kingshiya K S
-              </h1>
-              <div
-                class="font-publicalight mt-2 text-nowrap"
-                style="color: rgba(255, 255, 255, 0.69);"
-              >
-                <h1>3rd year CSE DEPT, SMCE.</h1>
-              </div>
-              <div class="mt-1">
-                <img src={stars} alt="stars" />
-              </div>
-            </div>
-          </div>
-          <div
-            class="font-publicalight pt-3 text-center text-[18px] text-[#D8D8D8]"
-          >
-            <p>
-              My experience as a software development intern at XYZ Tech was
-              nothing short of transformative. From day one, I was immersed in
-              real-world projects that challenged and expanded my coding skills.
-            </p>
-          </div>
-        </div>
-      </Card>
+      {/each}
     </div>
   </div>
 </main>
@@ -315,6 +139,6 @@
     background-position: center;
     background-size: cover;
     height: auto; */
-    background-color: red;
+    background-color: #111111;
   }
 </style>

@@ -1,6 +1,6 @@
 <script>
   import Button from "$lib/components/ui/button/button.svelte";
-  import internai from "../../../../img/Internship/internai.png";
+  import internai1 from "../../../../img/Internship/internai1.png";
   import inrenbg from "../.././../../img/Internship/internherobg.png";
 </script>
 
@@ -33,7 +33,7 @@
     </div>
 
     <div class="hero-bg hero relative">
-      <img src={internai} alt="" class=" w-full" />
+      <img src={internai1} alt="" class=" w-full" />
       <img
         src={inrenbg}
         alt=""

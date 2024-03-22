@@ -1,5 +1,5 @@
 <script>
-  import internhero from "../../../img/Internship/internhero.png";
+  import internhero1 from "../../../img/Internship/internhero1.png";
 </script>
 
 <main class=" flex h-screen w-full items-center overflow-x-hidden text-white">
@@ -29,7 +29,7 @@
       </div>
       <div class="md:w-5/12 mt-5 md:mt-0">
         <div class="hero-bg h-auto">
-          <img src={internhero} alt="" class="h-auto w-full" />
+          <img src={internhero1} alt="" class="h-auto w-full" />
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 
 <dialog
-  class=" rounded-2xl px-10 container mx-auto w-[1000px] bg-[#242424] p-2 opacity-90 shadow-2xl"
+  class=" rounded-2xl px-3 md:px-10 container mx-auto w-[1000px] bg-[#242424] p-0 md:p-2 opacity-90 shadow-2xl"
   bind:this={dialog}
   on:close={() => (showModal = false)}
   on:click|self={() => dialog.close()}
@@ -63,7 +63,7 @@
     background: rgba(0, 0, 0, 0.6);
   }
   dialog > div {
-    padding: 1em;
+    padding: 10px;
   }
   dialog[open] {
     animation: zoom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);

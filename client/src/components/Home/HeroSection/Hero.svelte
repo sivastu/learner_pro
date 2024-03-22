@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as Avatar from "$lib/components/ui/avatar";
   import Button from "$lib/components/ui/button/button.svelte";
-  import hero from "../../../img/Home/hero.png";
+  import hero1 from "../../../img/Home/hero1.png";
 </script>
 
 <div class="hero min-h-screen overflow-x-hidden">
@@ -33,29 +33,30 @@
             >Start Trial</Button
           >
           <Button
+            on:click={() => (window.location.href = "/webinarform")}
             variant="ghost"
-            class="text-herodesc rounded-full border-2  border-gray-500 md:px-10 md:py-8 text-base md:text-[20px]"
-            >How it Works</Button
+            class="text-herodesc hover:bg-white hover:text-black rounded-full border-2  border-gray-500 md:px-10 md:py-8 text-base md:text-[20px]"
+            >Webinar</Button
           >
         </div>
         <div
-          class="font-publicbold mt-6 flex gap-3 items-center md:gap-8 font-medium text-white xl:mt-12"
+          class="font-publicbold mt-6 flex gap-3 items-center justify-center md:justify-normal md:gap-8 font-medium text-white xl:mt-12"
         >
           <div class=" md:mr-8">
             <h3
               class="text-herocount mb-2 text-lg md:text-[25px] font-bold xl:text-[40px]"
             >
-              100000+
+              10000+
             </h3>
             <p class=" text-xs md:text-[17px] leading-snug xl:text-[20px]">
-              Interview tips to <br /> choose from
+              Happy <br /> Customers
             </p>
           </div>
           <div class=" md:mr-8">
             <h3
               class="text-herocount mb-2 text-lg md:text-[25px] font-bold xl:text-[40px]"
             >
-              100000+
+              5000+
             </h3>
             <p class="text-xs md:text-[17px] leading-snug xl:text-[20px]">
               Students <br />Trained
@@ -65,10 +66,10 @@
             <h3
               class="text-herocount mb-2 text-lg md:text-[25px] font-bold xl:text-[40px]"
             >
-              100000+
+              400+
             </h3>
             <p class="text-xs md:text-[17px] xl:text-[20px] leading-snug">
-              Professional<br />Trainers
+              Expert<br />Mentors
             </p>
           </div>
         </div>
@@ -78,7 +79,7 @@
           alt="LearnerPro Illustration"
           style="height: 100%; width: 100%;"
           class="h-full"
-          src={hero}
+          src={hero1}
         />
         <!-- <img alt="LearnerPro Illustration" style="height: 100%;" class="h-full" src={herosvg} /> -->
       </div>

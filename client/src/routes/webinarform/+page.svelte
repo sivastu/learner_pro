@@ -5,6 +5,7 @@
   import * as yup from "yup";
   import axios from "axios";
   import { toast } from "svelte-sonner";
+  import { onMount } from "svelte";
 
   let gradientColor1 = "#424242";
   let gradientColor2 = "#353535";
@@ -15,62 +16,75 @@
     { value: "student", label: "Student" },
   ];
 
-  const { errors, touched, isValid, isSubmitting, handleChange, handleSubmit } =
-    createForm({
-      initialValues: {
-        name: "",
-        email: "",
-        phoneNumber: "",
-        certificateName: "",
-        currentPosition: "student",
-      },
-      validationSchema: yup.object().shape({
-        name: yup.string().required("Name is required"),
-        email: yup
-          .string()
-          .required("Email is required")
-          .email("Invalid email"),
-        phoneNumber: yup
-          .string()
-          .required("Phone number is required")
-          .min(10, "phone number should be 10")
-          .max(10, "phone number should be 10"),
-        certificateName: yup.string().required("Certificate Name is required"),
-        currentPosition: yup
-          .string()
-          .required("Current Position is required")
-          .oneOf(["workingprofessional", "lookingforcareer", "student"]),
-      }),
-      onSubmit: async (values) => {
-        try {
-          const response = await axios.post(
-            `${config.BaseUrl}webinar/register`,
-            values
-          );
-          console.log(response);
-          if (response.data.ok === true) {
-            toast(`${response.data.message}`, {
-              duration: 3000,
-              position: "top-center",
-              style:
-                "border-radius: 20px; background: white; color: black; font-size: 17px; font-family: 'ZPublicaSans', sans-serif;",
-            });
-          }
-        } catch (error: any) {
-          toast(`${error.response.data.message}`, {
+  const {
+    handleReset,
+    errors,
+    touched,
+    isValid,
+    isSubmitting,
+    form,
+    state,
+    handleChange,
+    handleSubmit,
+  } = createForm({
+    initialValues: {
+      name: "",
+      email: "",
+      phoneNumber: "",
+      certificateName: "",
+      currentPosition: "student",
+    },
+    validationSchema: yup.object().shape({
+      name: yup.string().required("Name is required"),
+      email: yup.string().required("Email is required").email("Invalid email"),
+      phoneNumber: yup
+        .string()
+        .required("Phone number is required")
+        .min(10, "phone number should be 10")
+        .max(10, "phone number should be 10"),
+      certificateName: yup.string().required("Certificate Name is required"),
+      currentPosition: yup
+        .string()
+        .required("Current Position is required")
+        .oneOf(["workingprofessional", "lookingforcareer", "student"]),
+    }),
+    onSubmit: async (values) => {
+      try {
+        const response = await axios.post(
+          `${config.BaseUrl}webinar/register`,
+          values
+        );
+        console.log(response);
+        if (response.data.ok === true) {
+          toast(`${response.data.message}`, {
             duration: 3000,
             position: "top-center",
-            class: "bg-red-500",
             style:
               "border-radius: 20px; background: white; color: black; font-size: 17px; font-family: 'ZPublicaSans', sans-serif;",
           });
-          console.log(error);
         }
-      },
-    });
+      } catch (error: any) {
+        toast(`${error.response.data.message}`, {
+          duration: 3000,
+          position: "top-center",
+          class: "bg-red-500",
+          style:
+            "border-radius: 20px; background: white; color: black; font-size: 17px; font-family: 'ZPublicaSans', sans-serif;",
+        });
+        console.log(error);
+      }
+      // empty the fields
+
+      values.name = "";
+      values.email = "";
+      values.phoneNumber = "";
+      values.certificateName = "";
+      values.currentPosition = "";
+    },
+  });
 </script>
 
-<sectionerror
+<section
   class="h-[100vh] flex items-center justify-center"
   style="background: radial-gradient(circle, {gradientColor1}, {gradientColor2})"
 >
@@ -174,7 +188,7 @@
       </div>
     </form>
   </div>
-</sectionerror>
+</section>
 
 <style>
   .input-group {

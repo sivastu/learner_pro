@@ -1,5 +1,5 @@
 <script>
-  import brain from "../../../img/Home/brain.png";
+  import brain1 from "../../../img/Home/brain1.png";
   import brainman from "../../../img/Home/brainman.png";
   import check from "../../../img/Home/checkmark.svg";
 </script>
@@ -54,7 +54,7 @@
         <img
           alt="LearnerPro Illustration"
           class="h-auto max-w-full"
-          src={brain}
+          src={brain1}
         />
       </div>
     </div>
